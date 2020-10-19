@@ -11,8 +11,8 @@
 #include <stdlib.h>     // 提供malloc、realloc、free、exit原型
 #include "Common.h"
 
-#define LIST_INIT_SIZE 10 // 顺序表初始大小
-#define LIST_INCREMENT 5  // 顺序表增量大小
+#define LIST_INIT_SIZE 100 // 线性表存储空间的初始分配量
+#define LIST_INCREMENT 10  // 线性表存储空间的分配增量
 
 /* 顺序表元素类型定义 */
 typedef int ElemType;
@@ -25,7 +25,7 @@ typedef int ElemType;
 typedef struct {
     ElemType *elem;     // 顺序表存储空间的基址（指向顺序表所占内存的起始位置）
     int length;   // 当前顺序表长度（包含多少元素）
-    int listsize; // 当前分配的存储容量（可以存储多少元素）
+    int listsize; // 当前分配的存储容量（可以存储多少元素，以 sizeof(ElemType) 为单位）
 } SqList;
 
 /*
@@ -34,21 +34,21 @@ typedef struct {
  * 初始化
  * 初始化成功则返回OK，否则返回ERROR。
  */
-status InitList(SqList* L);
+Status InitList(SqList* L);
 
 /*
  * 销毁(结构)
  *
  * 释放顺序表所占内存。
  */
-status DestroyList(SqList* L);
+Status DestroyList(SqList* L);
 
 /*
  * 置空(内容)
  *
  * 只是清理顺序表中存储的数据，不释放顺序表所占内存。
  */
-status ClearList(SqList* L);
+Status ClearList(SqList* L);
 
 /*
  * 判空
@@ -59,7 +59,7 @@ status ClearList(SqList* L);
  * TRUE : 顺序表为空
  * FALSE: 顺序表不为空
  */
-boolean ListEmpty(SqList L);
+Boolean ListEmpty(SqList L);
 
 /*
  * 计数
@@ -78,7 +78,7 @@ int ListLength(SqList L);
  * 教材中i的含义是元素位置，从1开始计数，但这不符合编码的通用约定。
  * 通常，i的含义应该指索引，即从0开始计数。
  */
-status GetElem(SqList L, int i, ElemType* e);
+Status GetElem(SqList L, int i, ElemType* e);
 
 /*
  * 算法2.6 
@@ -91,7 +91,7 @@ status GetElem(SqList L, int i, ElemType* e);
  *【备注】
  * 元素e是compare函数第二个形参
  */
-int LocateElem(SqList L, ElemType e, status(*compare)(ElemType, ElemType));
+int LocateElem(SqList L, ElemType e, Status(*compare)(ElemType, ElemType));
 
 /*
  * 前驱
@@ -100,7 +100,7 @@ int LocateElem(SqList L, ElemType e, status(*compare)(ElemType, ElemType));
  * 如果存在，将其存储到pre_e中，返回OK，
  * 如果不存在，则返回ERROR。
  */
-status PriorElem(SqList L, ElemType cur_e, ElemType* pre_e);
+Status PriorElem(SqList L, ElemType cur_e, ElemType* pre_e);
 
 /*
  * 后继
@@ -109,7 +109,7 @@ status PriorElem(SqList L, ElemType cur_e, ElemType* pre_e);
  * 如果存在，将其存储到next_e中，返回OK，
  * 如果不存在，则返回ERROR。
  */
-status NextElem(SqList L, ElemType cur_e, ElemType* next_e);
+Status NextElem(SqList L, ElemType cur_e, ElemType* next_e);
 
 /*
  *  算法2.4 
@@ -121,7 +121,7 @@ status NextElem(SqList L, ElemType cur_e, ElemType* next_e);
  *【备注】
  * 教材中i的含义是元素位置，从1开始计数
  */
-status ListInsert(SqList* L, int i, ElemType e);
+Status ListInsert(SqList* L, int i, ElemType e);
 
 /*
  *  算法2.5 
@@ -134,7 +134,7 @@ status ListInsert(SqList* L, int i, ElemType e);
  *【备注】
  * 教材中i的含义是元素位置，从1开始计数
  */
-status ListDelete(SqList* L, int i, ElemType* e);
+Status ListDelete(SqList* L, int i, ElemType* e);
 
 /*
  * 遍历

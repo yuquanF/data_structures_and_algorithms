@@ -2,7 +2,7 @@
 #include "Common.h"
 
 
-void PressEnterToContinue(boolean isDebug) {
+void PressEnterToContinue(Boolean isDebug) {
     fflush(stdin);
 
     // 处于测试阶段时，可以让debug=TRUE，手动输入换行，以便让程序暂停下来，观察每一步的输出

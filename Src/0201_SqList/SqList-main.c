@@ -1,21 +1,21 @@
 #include <stdio.h>
 #include "SqList.h"
 
-// ÅĞ¶Ïdata>eÊÇ·ñ³ÉÁ¢
-status CmpGreater(ElemType data, ElemType e) {
+// åˆ¤æ–­ data > e æ˜¯å¦æˆç«‹
+Status CmpGreater(ElemType data, ElemType e) {
     return data > e ? TRUE : FALSE;
 }
 
 int main() {
-    SqList L;   // ´ı²Ù×÷µÄË³Ğò±í
+    SqList L;   // å¾…æ“ä½œçš„é¡ºåºè¡¨
 
     int i;
     ElemType e;
-    boolean debug = FALSE;
+    Boolean debug = FALSE;
 
     printf("------------- InitList -------------\n");
     {
-        printf("³õÊ¼»¯Ë³Ğò±í L ...\n");
+        printf("åˆå§‹åŒ–é¡ºåºè¡¨ L ...\n");
         InitList(&L);
     }
     PressEnterToContinue(debug);
@@ -24,9 +24,9 @@ int main() {
     printf("------------- ListEmpty -------------\n");
     {
         if(ListEmpty(L) == TRUE) {
-            printf("L Îª¿Õ£¡£¡\n");
+            printf("L ä¸ºç©ºï¼\n");
         } else {
-            printf("L ²»Îª¿Õ£¡\n");
+            printf("L ä¸ä¸ºç©ºï¼\n");
         }
     }
     PressEnterToContinue(debug);
@@ -35,7 +35,7 @@ int main() {
     printf("------------- ListInsert -------------\n");
     {
         for(i = 1; i <= 7; i++) {
-            printf("×÷ÎªÊ¾·¶£¬ÔÚ L µÚ %d ¸öÎ»ÖÃ²åÈë \"%d\"...\n", i, i);
+            printf("ä½œä¸ºç¤ºèŒƒï¼Œåœ¨ L ç¬¬ %d ä¸ªä½ç½®æ’å…¥ \"%d\"...\n", i, i);
             ListInsert(&L, i, i);
         }
     }
@@ -44,7 +44,7 @@ int main() {
 
     printf("------------- ListTraverse -------------\n");
     {
-        printf("L ÖĞµÄÔªËØÎª£ºL = ");
+        printf("L ä¸­çš„å…ƒç´ ä¸ºï¼šL = ");
         ListTraverse(L, PrintIntElem);
     }
     PressEnterToContinue(debug);
@@ -53,25 +53,25 @@ int main() {
     printf("------------- ListLength -------------\n");
     {
         i = ListLength(L);
-        printf("L µÄ³¤¶ÈÎª %d \n", i);
+        printf("L çš„é•¿åº¦ä¸º %d \n", i);
     }
     PressEnterToContinue(debug);
 
 
     printf("------------- ListDelete -------------\n");
     {
-        printf("É¾³ıÇ°µÄÔªËØ£ºL = ");
+        printf("åˆ é™¤å‰çš„å…ƒç´ ï¼šL = ");
         ListTraverse(L, PrintIntElem);
 
-        printf("³¢ÊÔÉ¾³ı L ÖĞµÚ 6 ¸öÔªËØ...\n");
+        printf("å°è¯•åˆ é™¤ L ä¸­ç¬¬ 6 ä¸ªå…ƒç´ ...\n");
 
         if(ListDelete(&L, 6, &e) == OK) {
-            printf("É¾³ı³É¹¦£¬±»É¾³ıÔªËØÊÇ£º\"%d\"\n", e);
+            printf("åˆ é™¤æˆåŠŸï¼Œè¢«åˆ é™¤çš„å…ƒç´ æ˜¯ï¼š\"%d\"\n", e);
         } else {
-            printf("É¾³ıÊ§°Ü£¬µÚ 6 ¸öÔªËØ²»´æÔÚ£¡\n");
+            printf("åˆ é™¤å¤±è´¥ï¼\n");
         }
 
-        printf("É¾³ıºóµÄÔªËØ£ºL = ");
+        printf("åˆ é™¤å…ƒç´ åçš„ L = ");
         ListTraverse(L, PrintIntElem);
     }
     PressEnterToContinue(debug);
@@ -80,7 +80,7 @@ int main() {
     printf("------------- GetElem -------------\n");
     {
         GetElem(L, 4, &e);
-        printf("L ÖĞµÚ 4 ¸öÎ»ÖÃµÄÔªËØÎª \"%d\" \n", e);
+        printf("L ä¸­ç¬¬ 4 ä¸ªä½ç½®çš„å…ƒç´ ä¸º \"%d\" \n", e);
     }
     PressEnterToContinue(debug);
 
@@ -88,7 +88,7 @@ int main() {
     printf("------------- LocateElem -------------\n");
     {
         i = LocateElem(L, 5, CmpGreater);
-        printf("L ÖĞµÚÒ»¸öÔªËØÖµ´óÓÚ \"5\" µÄÔªËØÊÇ \"%d\" \n", L.elem[i - 1]);
+        printf("L åœ¨ç¬¬ä¸€ä¸ªå…ƒç´ å€¼å¤§äº \"5\" çš„å…ƒç´ æ˜¯ \"%d\" \n", L.elem[i - 1]);
     }
     PressEnterToContinue(debug);
 
@@ -98,9 +98,9 @@ int main() {
         ElemType cur_e = 5;
 
         if(PriorElem(L, cur_e, &e) == OK) {
-            printf("ÔªËØ \"%d\" µÄÇ°ÇıÎª \"%d\" \n", cur_e, e);
+            printf("Ôªï¿½ï¿½ \"%d\" ï¿½ï¿½Ç°ï¿½ï¿½Îª \"%d\" \n", cur_e, e);
         } else {
-            printf("ÔªËØ \"%d\" µÄÇ°Çı²»´æÔÚ£¡\n", cur_e);
+            printf("Ôªï¿½ï¿½ \"%d\" ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½\n", cur_e);
         }
     }
     PressEnterToContinue(debug);
@@ -111,9 +111,9 @@ int main() {
         ElemType cur_e = 5;
 
         if(NextElem(L, cur_e, &e) == OK) {
-            printf("ÔªËØ \"%d\" µÄºó¼ÌÎª \"%d\" \n", cur_e, e);
+            printf("Ôªï¿½ï¿½ \"%d\" ï¿½Äºï¿½ï¿½Îª \"%d\" \n", cur_e, e);
         } else {
-            printf("ÔªËØ \"%d\" µÄºó¼Ì²»´æÔÚ£¡\n", cur_e);
+            printf("Ôªï¿½ï¿½ \"%d\" ï¿½Äºï¿½Ì²ï¿½ï¿½ï¿½ï¿½Ú£ï¿½\n", cur_e);
         }
     }
     PressEnterToContinue(debug);
@@ -121,20 +121,20 @@ int main() {
 
     printf("------------- ClearList -------------\n");
     {
-        printf("Çå¿Õ L Ç°£º");
+        printf("ï¿½ï¿½ï¿½ L Ç°ï¿½ï¿½");
         if(ListEmpty(L) == TRUE) {
-            printf(" L Îª¿Õ£¡£¡\n");
+            printf(" L Îªï¿½Õ£ï¿½ï¿½ï¿½\n");
         } else {
-            printf(" L ²»Îª¿Õ£¡\n");
+            printf(" L ï¿½ï¿½Îªï¿½Õ£ï¿½\n");
         }
 
         ClearList(&L);
 
-        printf("Çå¿Õ L ºó£º");
+        printf("ï¿½ï¿½ï¿½ L ï¿½ï¿½");
         if(ListEmpty(L) == TRUE) {
-            printf(" L Îª¿Õ£¡£¡\n");
+            printf(" L Îªï¿½Õ£ï¿½ï¿½ï¿½\n");
         } else {
-            printf(" L ²»Îª¿Õ£¡\n");
+            printf(" L ï¿½ï¿½Îªï¿½Õ£ï¿½\n");
         }
     }
     PressEnterToContinue(debug);
@@ -142,20 +142,20 @@ int main() {
 
     printf("------------- DestroyList -------------\n");
     {
-        printf("Ïú»Ù L Ç°£º");
+        printf("ï¿½ï¿½ï¿½ï¿½ L Ç°ï¿½ï¿½");
         if(L.elem != NULL) {
-            printf(" L ´æÔÚ£¡\n");
+            printf(" L ï¿½ï¿½ï¿½Ú£ï¿½\n");
         } else {
-            printf(" L ²»´æÔÚ£¡£¡\n");
+            printf(" L ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½\n");
         }
 
         DestroyList(&L);
 
-        printf("Ïú»Ù L ºó£º");
+        printf("ï¿½ï¿½ï¿½ï¿½ L ï¿½ï¿½");
         if(L.elem != NULL) {
-            printf(" L ´æÔÚ£¡\n");
+            printf(" L ï¿½ï¿½ï¿½Ú£ï¿½\n");
         } else {
-            printf(" L ²»´æÔÚ£¡£¡\n");
+            printf(" L ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½\n");
         }
     }
     PressEnterToContinue(debug);

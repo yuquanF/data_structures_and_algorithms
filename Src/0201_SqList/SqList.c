@@ -6,7 +6,7 @@
  * 初始化
  * 初始化成功则返回OK，否则返回ERROR。
  */
-status InitList(SqList *L) {
+Status InitList(SqList *L) {
     // 分配指定容量的内存，如果分配失败，则返回NULL
     L->elem = (ElemType *) malloc(LIST_INIT_SIZE * sizeof(ElemType));
     if (L->elem == NULL) {
@@ -22,7 +22,7 @@ status InitList(SqList *L) {
  *
  * 释放顺序表所占内存。
  */
-status DestroyList(SqList *L) {
+Status DestroyList(SqList *L) {
     // 确保顺序表结构存在
     if (L == NULL || L->elem == NULL) {
         return ERROR;
@@ -39,7 +39,7 @@ status DestroyList(SqList *L) {
  *
  * 只是清理顺序表中存储的数据，不释放顺序表所占内存。
  */
-status ClearList(SqList *L) {
+Status ClearList(SqList *L) {
     // 确保顺序表结构存在
     if (L == NULL || L->elem == NULL) {
         return ERROR;
@@ -58,7 +58,7 @@ status ClearList(SqList *L) {
  * TRUE : 顺序表为空
  * FALSE: 顺序表不为空
  */
-boolean ListEmpty(SqList L) {
+Boolean ListEmpty(SqList L) {
     return L.length == 0 ? TRUE : FALSE;
 }
 
@@ -81,7 +81,7 @@ int ListLength(SqList L) {
  * 教材中i的含义是元素位置，从1开始计数，但这不符合编码的通用约定。
  * 通常，i的含义应该指索引，即从0开始计数。
  */
-status GetElem(SqList L, int i, ElemType *e) {
+Status GetElem(SqList L, int i, ElemType *e) {
     // 确保顺序表结构存在
     if (L.elem == NULL) {
         return ERROR;
@@ -105,7 +105,7 @@ status GetElem(SqList L, int i, ElemType *e) {
  *【备注】
  * 元素e是compare函数第二个形参
  */
-int LocateElem(SqList L, ElemType e, status(*compare)(ElemType, ElemType)) {
+int LocateElem(SqList L, ElemType e, Status(*compare)(ElemType, ElemType)) {
     // 确保顺序表结构存在
     if (L.elem == NULL) {
         return ERROR;
@@ -127,13 +127,13 @@ int LocateElem(SqList L, ElemType e, status(*compare)(ElemType, ElemType)) {
  * 如果存在，将其存储到pre_e中，返回OK，
  * 如果不存在，则返回ERROR。
  */
-status PriorElem(SqList L, ElemType cur_e, ElemType *pre_e) {
+Status PriorElem(SqList L, ElemType cur_e, ElemType *pre_e) {
     // 确保顺序表结构存在，且最少包含两个元素
     if (L.elem == NULL || L.length < 2) {
         return ERROR;
     }
     ElemType *p = L.elem;
-    status flag = ERROR;
+    Status flag = ERROR;
     for (int i = 1; i < L.length; i++) {
         // 从索引1开始查找，若找到，设置标志位为OK，并设置pre_e的值
         if (p[i] == cur_e) {
@@ -152,13 +152,13 @@ status PriorElem(SqList L, ElemType cur_e, ElemType *pre_e) {
  * 如果存在，将其存储到next_e中，返回OK，
  * 如果不存在，则返回ERROR。
  */
-status NextElem(SqList L, ElemType cur_e, ElemType *next_e) {
+Status NextElem(SqList L, ElemType cur_e, ElemType *next_e) {
     // 确保顺序表结构存在，且最少包含两个元素
     if (L.elem == NULL || L.length < 2) {
         return ERROR;
     }
     ElemType *p = L.elem;
-    status flag = ERROR;
+    Status flag = ERROR;
     for (int i = 0; i < L.length - 1; i++) {
         // 从索引0开始查找，到length-1截止，若找到，设置标志位为OK，并设置next_e的值
         if (p[i] == cur_e) {
@@ -180,7 +180,7 @@ status NextElem(SqList L, ElemType cur_e, ElemType *next_e) {
  *【备注】
  * 教材中i的含义是元素位置，从1开始计数
  */
-status ListInsert(SqList *L, int i, ElemType e) {
+Status ListInsert(SqList *L, int i, ElemType e) {
     // 确保顺序表结构存在
     if (L == NULL || L->elem == NULL) {
         return ERROR;
@@ -205,7 +205,7 @@ status ListInsert(SqList *L, int i, ElemType e) {
     for (int j = L->length; j > i - 1; j--) {
         p[j] = p[j - 1];
     }
-    *(p + i - 1) = e;
+    p[i-1] = e;
     L->length += 1;
     return OK;
 }
@@ -221,7 +221,7 @@ status ListInsert(SqList *L, int i, ElemType e) {
  *【备注】
  * 教材中i的含义是元素位置，从1开始计数
  */
-status ListDelete(SqList *L, int i, ElemType *e) {
+Status ListDelete(SqList *L, int i, ElemType *e) {
     // 确保顺序表结构存在
     if (L == NULL || L->elem == NULL) {
         return ERROR;
